@@ -1,14 +1,14 @@
-name := """scala-play-react-seed"""
+name := """lab-play-react"""
 
-version := "1.0-SNAPSHOT"
+version := "1.0"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava).settings(
+lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
   watchSources ++= (baseDirectory.value / "public/ui" ** "*").get
 )
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.3"
 
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
