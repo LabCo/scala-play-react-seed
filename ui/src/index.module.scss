@@ -1,0 +1,30 @@
+@import 'sassCommon/_variables';
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: $primary-font;
+  height: 100%;
+}
+
+* {
+  //because f*** input boxes
+  font-family: $primary-font;
+}
+
+body {
+  overflow: auto;
+}
+
+:global {
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+}

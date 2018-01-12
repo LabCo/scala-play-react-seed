@@ -10,10 +10,26 @@
   },
   "proxy": "http://localhost:9000",
   "dependencies": {
+    "custom-react-scripts": "^0.2.1",
+    "immutable": "^3.8.2",
+    "mousetrap": "^1.6.1",
     "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
+    "react-dates": "^16.0.2",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-redux": "^5.0.6",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.0.17",
+    "react-timeout": "^1.0.1",
+    "react-typist": "^2.0.4",
+    "react-typist-loop": "0.0.3",
+    "react-virtualized": "^9.16.1",
+    "react-virtualized-select": "^3.1.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.17.0",
+    "rxjs": "^5.5.6"
   },
   "devDependencies": {
     "ncp": "^2.0.0",

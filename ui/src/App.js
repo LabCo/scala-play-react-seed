@@ -1,62 +1,68 @@
-import React, {Component} from 'react';
-import { HashRouter, Route, Link } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Switch, Route, Redirect, BrowserRouter} from 'react-router-dom'
 
-import Client from "./Client";
+import 'rxjs'
+// import { switchMap } from 'rxjs/operator/switchMap';
 
-import reactLogo from './images/react.svg';
-import playLogo from './images/play.svg';
-import scalaLogo from './images/scala.png';
+import UserReducer from 'actionReducers/user.js'
 
-import './App.css';
+import Authenticate from 'containers/authenticate/authenticate.jsx'
+import Home from 'containers/home/home.jsx'
 
-const Tech = ({ match }) => {
-  return <div>Current Route: {match.params.tech}</div>
-};
+import styles from './app.module.scss'
 
+import 'react-select/dist/react-select.css'
+import 'react-virtualized/styles.css'
+import 'react-virtualized-select/styles.css'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {title: ''};
-  }
+const mapStateToProps = (state, ownProps) => ({
+  user: UserReducer.getUser(state)
+})
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchCurrentUser: () => dispatch(UserReducer.fetchCurrentUser())
+})
 
-  async componentDidMount() {
-    Client.getSummary(summary => {
-      this.setState({
-        title: summary.content
-      });
-    });
+@connect(mapStateToProps, mapDispatchToProps)
+export default class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchCurrentUser();
   }
 
   render() {
-    return (
-      <HashRouter>
-        <div className="App">
-          <h1>Welcome to {this.state.title}!</h1>
-          <nav>
-            <Link to="scala" >
-              <img  width="450" height="300"  src={scalaLogo} alt="Scala Logo" />
-            </Link>
-            <Link to="play" >
-              <img width="400" height="400" src={playLogo} alt="Play Framework Logo" />
-            </Link>
-            <Link to="react" >
-              <img width="400" height="400" src={reactLogo} className="App-logo" alt="React Logo"/>
-            </Link>
-          </nav>
-          <Route path="/:tech" component={Tech} />
-          <div>
-            <h2>Check out the project on GitHub for more information</h2>
-            <h3>
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/yohangz/scala-play-react-seed">
-                java-play-react-seed
-              </a>
-            </h3>
-          </div>
-        </div>
-      </HashRouter>
-    );
+    const {router: Router} = this.props;
+    return <div className={styles.container}>
+      <Router.type {...Router.props}>
+        <Switch>
+          <Route path="/auth" component={Authenticate} />
+          <RouteWithUser path="/" exact component={Home} />
+          <Redirect to="/" />
+        </Switch>
+      </Router.type>
+    </div>
+  }
+
+  static propTypes = {
+    router: PropTypes.node,
+    history: PropTypes.object,
+  }
+
+  static defaultProps = {
+    router: <BrowserRouter />
   }
 }
 
-export default App;
+@connect(mapStateToProps)
+class RouteWithUser extends React.Component {
+  render() {
+    const { component: Component, ...rest } = this.props;
+
+    return <Route {...rest} render={props => (
+      this.props.user?<Component {...this.props} {...props}/>:<Redirect to={{
+        pathname: '/auth',
+        state: { from: props.location }
+      }} />
+    )} />
+  }
+}

@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.tooltip {
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 0.5em;
+
+  // & span {
+  //   border-color: rgba(0, 0, 0, 0.71) transparent transparent transparent !important;
+  // }
+
+  // & > div:last-child {
+  //   top: 2px !important;
+  // }
+}
+
+:global {
+  .Select.Select, .Select--multi.Select--multi {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    width: 100%;
+
+    .Select-value-icon {
+      display: none;
+    }
+    .Select-clear {
+      display: none;
+    }
+
+    .Select-multi-value-wrapper {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: stretch;
+      position: relative;
+      align-self: stretch;
+    }
+
+    .Select-value-label {
+      white-space: nowrap;
+      flex-shrink: 1;
+      line-height: 1.5em;
+    }
+
+    .Select-control {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: stretch;
+      flex-grow: 1;
+      height: auto;
+    }
+
+    .Select-input {
+      height: auto;
+      input {
+        padding: 0;
+      }
+    }
+
+    .Select-value {
+      flex-shrink: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin:0;
+    }
+
+    .Select-placeholder {
+      line-height: initial;
+    }
+
+    .Select-control.Select-control {
+      border: none !important;
+      outline: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .Select--single.Select--single > .Select-control {
+    .Select-value, .Select-input {
+      padding-left: 0.5em;
+    }
+
+    .Select-placeholder {
+      top: unset;
+      bottom: unset;
+    }
+  }
+
+  .Select--multi.Select--multi {
+    .Select-value-label {
+      line-height: 1.5em;
+      padding: 0.2em 0.5em;
+    }
+    .Select-multi-value-wrapper {
+      align-self: center;
+    }
+    .Select-value {
+      margin-left: 0.3em;
+
+      &:first-child {
+        margin-left: 0.625em;
+      }
+    }
+  }
+}
