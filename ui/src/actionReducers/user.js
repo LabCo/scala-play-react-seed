@@ -39,7 +39,7 @@ export default class UserReducer extends GenericAR {
         })
         .catch( error => Observable.of({
           type: FETCH_CURRENT_USER_FAILURE,
-          response: fromJS(error.xhr.response)
+          response: fromJS(error?.xhr?.response)
         }))
       ),
 
