@@ -1,5 +1,5 @@
 {
-  "name": "java-play-react-seed",
+  "name": "lab-scala-play-react",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,8 +10,8 @@
   },
   "proxy": "http://localhost:9000",
   "dependencies": {
-    "custom-react-scripts": "^0.2.1",
     "immutable": "^3.8.2",
+    "lab-react-scripts": "^1.0.18-1",
     "mousetrap": "^1.6.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
@@ -20,7 +20,6 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "1.0.17",
     "react-timeout": "^1.0.1",
     "react-typist": "^2.0.4",
     "react-typist-loop": "0.0.3",
